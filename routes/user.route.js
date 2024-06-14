@@ -21,7 +21,7 @@ router.post('/', (req,res)=>{
         data: payload
     });
 });
-
+//user/id => update
 router.patch('/:id', (req,res)=>{
     const userId = req.params.id;
     const newUpdatedValue = req.body;
@@ -35,11 +35,15 @@ router.patch('/:id', (req,res)=>{
     };
     res.send(mockData);
 });
-
+//user/id => delete
 router.delete('/:id', (req, res) => {
     const userId = req.params.id;
     const indexToDelete = mockData.filter((item) => item.id !== userId);
-    res.send(indexToDelete);
+    mockData = indexToDelete;
+    res.send({
+        message: "User deleted successfully",
+        details: mockData
+    });
 });
 
 module.exports = router;
